@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAFOI - Salon Africain des Orateurs d'Impact</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/emailjs-com/3.2.0/email.min.js"></script>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+--primary-green: #4CAF50;
+--primary-orange: #FF9800;
+--primary-red: #F44336;
+--dark-text: #333;
+--light-bg: #f8f9fa;
+}
+body {
+font-family: 'Arial', sans-serif;
+line-height: 1.6;
+color: var(--dark-text);
+}
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 20px;
+}
+/* Header */
+header {
+background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000;
+border-bottom: 3px solid var(--primary-green);
+}
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem 0;
+}
+/* Dropdown Menu */
+.nav-dropdown {
+position: relative;
+display: inline-block;
+}
+.dropdown-btn {
+background: var(--primary-green);
+color: white;
+padding: 12px 20px;
+border: none;
+border-radius: 25px;
+cursor: pointer;
+font-size: 1rem;
+font-weight: 600;
+display: flex;
+align-items: center;
+gap: 8px;
+transition: all 0.3s;
+box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+}
+.dropdown-btn:hover {
+background: #45a049;
+transform: translateY(-2px);
+box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: white;
+min-width: 220px;
+box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+z-index: 1001;
+border-radius: 15px;
+overflow: hidden;
+top: 100%;
+left: 0;
+margin-top: 10px;
+}
+.dropdown-content a {
+color: var(--dark-text);
+padding: 15px 20px;
+text-decoration: none;
+display: flex;
+align-items: center;
+gap: 12px;
+font-weight: 500;
+transition: all 0.3s;
+border-left: 4px solid transparent;
+border-radius: 10px;
+margin: 5px;
+}
+.dropdown-content a:hover {
+background-color: var(--light-bg);
+border-left: 4px solid var(--primary-green);
+color: var(--primary-green);
+padding-left: 25px;
+transform: translateX(5px);
+}
+.nav-dropdown:hover .dropdown-content {
+display: block;
+animation: slideDown 0.3s ease;
+}
+@keyframes slideDown {
+from { opacity: 0; transform: translateY(-10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+/* Logo Enhanced */
+.logo {
+display: flex;
+align-items: center;
+font-size: 3.5rem;
+font-weight: bold;
+background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+.logo-img {
+height: 50px;
+margin-right: 15px;
+border-radius: 8px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+transition: all 0.3s;
+}
+.logo-img:hover {
+transform: scale(1.05);
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.logo-details {
+margin-left: 15px;
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
+.logo-line {
+font-size: 0.9rem;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+.logo-line.salon { color: var(--primary-orange); }
+.logo-line.africain { color: var(--dark-text); }
+.logo-line.orateurs { color: var(--primary-red); }
+.logo-line.impact { color: var(--primary-green); }
+/* Contact Icons */
+.contact-icons {
+display: flex;
+align-items: center;
+gap: 15px;
+}
+.contact-icon {
+width: 45px;
+height: 45px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-size: 1.2rem;
+transition: all 0.3s;
+cursor: pointer;
+box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+.contact-icon.email {
+background: linear-gradient(135deg, #ea4335, #fbbc05);
+}
+.contact-icon.phone {
+background: linear-gradient(135deg, #34a853, #4285f4);
+}
+.contact-icon.whatsapp {
+background: linear-gradient(135deg, #25d366, #128c7e);
+}
+.contact-icon:hover {
+transform: translateY(-3px) scale(1.1);
+box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+.contact-icon:active {
+transform: translateY(-1px) scale(1.05);
+}
+/* Hero Section Enhanced */
+.hero {
+background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-orange) 50%, var(--primary-red) 100%);
+color: white;
+padding: 140px 0 100px;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+.hero::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="90" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+animation: float 20s infinite linear;
+}
+@keyframes float {
+0% { transform: translateY(0px) rotate(0deg); }
+100% { transform: translateY(-20px) rotate(360deg); }
+}
+.hero-content {
+position: relative;
+z-index: 2;
+}
+.hero h1 {
+font-size: 4rem;
+margin-bottom: 1rem;
+text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+animation: slideInUp 1s ease-out;
+background: linear-gradient(45deg, #fff, #f0f0f0);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.hero-subtitle {
+font-size: 1.8rem;
+margin-bottom: 1rem;
+font-weight: 600;
+animation: slideInUp 1s ease-out 0.2s both;
+}
+.hero p {
+font-size: 1.3rem;
+margin-bottom: 2.5rem;
+max-width: 900px;
+margin-left: auto;
+margin-right: auto;
+line-height: 1.8;
+animation: slideInUp 1s ease-out 0.4s both;
+}
+@keyframes slideInUp {
+from {
+opacity: 0;
+transform: translateY(50px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.cta-button {
+background: linear-gradient(135deg, white, #f8f9fa);
+color: var(--primary-green);
+padding: 18px 45px;
+border: none;
+border-radius: 50px;
+font-size: 1.3rem;
+font-weight: bold;
+cursor: pointer;
+transition: all 0.4s;
+text-decoration: none;
+display: inline-block;
+box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+animation: slideInUp 1s ease-out 0.6s both;
+position: relative;
+overflow: hidden;
+}
+.cta-button::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+transition: left 0.5s;
+}
+.cta-button:hover::before {
+left: 100%;
+}
+.cta-button:hover {
+transform: translateY(-5px) scale(1.05);
+box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+.hero-stats {
+display: flex;
+justify-content: center;
+gap: 3rem;
+margin-top: 3rem;
+animation: fadeIn 1s ease-out 0.8s both;
+}
+.stat-item {
+text-align: center;
+background: rgba(255,255,255,0.1);
+padding: 1.5rem;
+border-radius: 15px;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.2);
+}
+.stat-number {
+font-size: 2.5rem;
+font-weight: bold;
+display: block;
+}
+.stat-label {
+font-size: 1rem;
+opacity: 0.9;
+}
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+/* Sections Enhanced */
+.section {
+padding: 100px 0;
+position: relative;
+}
+.section.alternate {
+background: linear-gradient(135deg, var(--light-bg) 0%, #f0f4f8 100%);
+}
+.section h2 {
+font-size: 3rem;
+background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 3rem;
+text-align: center;
+position: relative;
+animation: fadeInUp 0.8s ease-out;
+}
+.section h2::after {
+content: '';
+position: absolute;
+bottom: -10px;
+left: 50%;
+transform: translateX(-50%);
+width: 100px;
+height: 4px;
+background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+border-radius: 2px;
+}
+.section-content {
+max-width: 1000px;
+margin: 0 auto;
+text-align: center;
+animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+.section p {
+font-size: 1.2rem;
+margin-bottom: 2rem;
+text-align: justify;
+line-height: 1.8;
+color: #555;
+}
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+/* Values Grid Enhanced */
+.values-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 2.5rem;
+margin-top: 4rem;
+}
+.value-card {
+background: white;
+padding: 2.5rem;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+transition: all 0.4s;
+position: relative;
+overflow: hidden;
+border: 1px solid rgba(76, 175, 80, 0.1);
+}
+.value-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 5px;
+background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+}
+.value-card:hover {
+transform: translateY(-10px) scale(1.02);
+box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.value-card h3 {
+color: var(--primary-red);
+margin-bottom: 1.5rem;
+font-size: 1.4rem;
+position: relative;
+}
+.value-card h3::before {
+content: '';
+position: absolute;
+left: -15px;
+top: 50%;
+transform: translateY(-50%);
+width: 4px;
+height: 20px;
+background: var(--primary-green);
+border-radius: 2px;
+}
+/* Programme Timeline Enhanced */
+.programme-timeline {
+max-width: 900px;
+margin: 0 auto;
+position: relative;
+}
+.programme-timeline::before {
+content: '';
+position: absolute;
+left: 30px;
+top: 0;
+bottom: 0;
+width: 4px;
+background: linear-gradient(180deg, var(--primary-green), var(--primary-orange), var(--primary-red));
+border-radius: 2px;
+}
+.timeline-item {
+background: white;
+margin: 2rem 0;
+margin-left: 60px;
+padding: 2rem;
+border-radius: 15px;
+box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+position: relative;
+transition: all 0.3s;
+border-left: none;
+}
+.timeline-item::before {
+content: '';
+position: absolute;
+left: -45px;
+top: 30px;
+width: 20px;
+height: 20px;
+background: var(--primary-green);
+border-radius: 50%;
+border: 4px solid white;
+box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.timeline-item:hover {
+transform: translateX(10px);
+box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+}
+.timeline-time {
+font-weight: bold;
+color: var(--primary-green);
+font-size: 1.3rem;
+display: inline-block;
+background: linear-gradient(135deg, var(--light-bg), #e8f5e8);
+padding: 8px 15px;
+border-radius: 20px;
+margin-bottom: 10px;
+}
+/* Registration Form */
+.registration-form {
+max-width: 600px;
+margin: 0 auto;
+background: white;
+padding: 3rem;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.form-group {
+margin-bottom: 1.5rem;
+}
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+font-weight: bold;
+color: var(--dark-text);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+width: 100%;
+padding: 12px;
+border: 2px solid #ddd;
+border-radius: 8px;
+font-size: 1rem;
+transition: border-color 0.3s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+outline: none;
+border-color: var(--primary-green);
+}
+.submit-btn {
+background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+color: white;
+padding: 15px 40px;
+border: none;
+border-radius: 50px;
+font-size: 1.2rem;
+font-weight: bold;
+cursor: pointer;
+width: 100%;
+transition: transform 0.3s;
+}
+.submit-btn:hover {
+transform: translateY(-2px);
+}
+/* Contact Section Enhanced */
+.contact-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 2.5rem;
+margin-bottom: 4rem;
+}
+.contact-card {
+background: white;
+padding: 2.5rem;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+text-align: center;
+transition: all 0.4s;
+border: 1px solid rgba(76, 175, 80, 0.1);
+position: relative;
+overflow: hidden;
+}
+.contact-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 5px;
+background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+}
+.contact-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+.contact-card-icon {
+width: 80px;
+height: 80px;
+margin: 0 auto 1.5rem;
+background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-size: 2rem;
+box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+.contact-card h3 {
+color: var(--dark-text);
+margin-bottom: 1rem;
+font-size: 1.4rem;
+}
+.contact-card p {
+color: #666;
+margin-bottom: 0.5rem;
+text-align: center;
+}
+.contact-btn {
+display: inline-block;
+background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+color: white;
+padding: 12px 25px;
+border: none;
+border-radius: 25px;
+text-decoration: none;
+font-weight: 600;
+margin-top: 1rem;
+transition: all 0.3s;
+}
+.contact-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.social-section {
+text-align: center;
+padding: 3rem 0;
+background: linear-gradient(135deg, var(--light-bg), #f0f4f8);
+border-radius: 20px;
+margin-top: 3rem;
+}
+.social-section h3 {
+color: var(--dark-text);
+margin-bottom: 2rem;
+font-size: 1.8rem;
+}
+.social-links-enhanced {
+display: flex;
+justify-content: center;
+gap: 2rem;
+flex-wrap: wrap;
+}
+.social-link {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 15px 25px;
+border-radius: 50px;
+text-decoration: none;
+color: white;
+font-weight: 600;
+transition: all 0.3s;
+box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.social-link.facebook {
+background: linear-gradient(135deg, #1877f2, #42a5f5);
+}
+.social-link.tiktok {
+background: linear-gradient(135deg, #000, #ff0050);
+}
+.social-link.whatsapp {
+background: linear-gradient(135deg, #25d366, #128c7e);
+}
+.social-link.instagram {
+background: linear-gradient(135deg, #e4405f, #fd5949, #fccc63);
+}
+.social-link:hover {
+transform: translateY(-3px) scale(1.05);
+box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+/* Feedback Section */
+.feedback-section {
+background: var(--primary-green);
+color: white;
+}
+.feedback-form {
+max-width: 600px;
+margin: 0 auto;
+}
+.rating-group {
+display: flex;
+justify-content: center;
+gap: 1rem;
+margin: 1rem 0;
+}
+.star {
+font-size: 2rem;
+color: #ddd;
+cursor: pointer;
+transition: color 0.3s;
+}
+.star.active,
+.star:hover {
+color: var(--primary-orange);
+}
+/* Footer */
+footer {
+background: var(--dark-text);
+color: white;
+padding: 3rem 0;
+text-align: center;
+}
+.footer-content {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 2rem;
+margin-bottom: 2rem;
+}
+.footer-section h3 {
+color: var(--primary-orange);
+margin-bottom: 1rem;
+}
+/* Modal */
+.modal {
+display: none;
+position: fixed;
+z-index: 2000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+background-color: white;
+margin: 5% auto;
+padding: 2rem;
+border-radius: 20px;
+width: 90%;
+max-width: 500px;
+text-align: center;
+}
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+}
+.close:hover {
+color: var(--primary-red);
+}
+/* Loader */
+.loader {
+border: 4px solid #f3f3f3;
+border-top: 4px solid var(--primary-green);
+border-radius: 50%;
+width: 40px;
+height: 40px;
+animation: spin 1s linear infinite;
+margin: 0 auto;
+}
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+/* Back to top button */
+.back-to-top {
+position: fixed;
+bottom: 30px;
+right: 30px;
+background: linear-gradient(135deg, var(--primary-green), var(--primary-orange));
+color: white;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+border: none;
+cursor: pointer;
+font-size: 1.5rem;
+box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+transition: all 0.3s;
+opacity: 0;
+visibility: hidden;
+z-index: 999;
+}
+.back-to-top.show {
+opacity: 1;
+visibility: visible;
+}
+.back-to-top:hover {
+transform: translateY(-3px);
+box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+/* Responsive Enhanced */
+@media (max-width: 768px) {
+.logo {
+font-size: 2.5rem;
+}
+.logo-img {
+height: 40px;
+}
+.logo-details {
+margin-left: 10px;
+}
+.logo-line {
+font-size: 0.7rem;
+}
+.contact-icons {
+gap: 10px;
+}
+.contact-icon {
+width: 40px;
+height: 40px;
+font-size: 1rem;
+}
+.dropdown-btn {
+padding: 10px 15px;
+font-size: 0.9rem;
+}
+.hero {
+padding: 120px 0 60px;
+}
+.hero h1 {
+font-size: 2.8rem;
+}
+.hero-subtitle {
+font-size: 1.4rem;
+}
+.hero p {
+font-size: 1.1rem;
+}
+.hero-stats {
+flex-direction: column;
+gap: 1.5rem;
+align-items: center;
+}
+.stat-item {
+width: 200px;
+}
+.registration-form {
+padding: 2rem 1rem;
+}
+.values-grid,
+.contact-grid {
+grid-template-columns: 1fr;
+}
+.timeline-item {
+margin-left: 30px;
+padding: 1.5rem;
+}
+.timeline-item::before {
+left: -25px;
+width: 15px;
+height: 15px;
+}
+.programme-timeline::before {
+left: 15px;
+}
+.social-links-enhanced {
+flex-direction: column;
+align-items: center;
+gap: 1rem;
+}
+.social-link {
+width: 200px;
+justify-content: center;
+}
+.section h2 {
+font-size: 2.2rem;
+}
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+<nav class="container">
+<!-- Navigation Dropdown -->
+<div class="nav-dropdown">
+<button class="dropdown-btn">
+<i class="fas fa-bars"></i>
+Menu
+</button>
+<div class="dropdown-content">
+<a href="#accueil"><i class="fas fa-home"></i> &nbsp; Accueil</a>
+<a href="#presentation"><i class="fas fa-info-circle"></i> &nbsp; Présentation</a>
+<a href="#programme"><i class="fas fa-calendar-alt"></i> &nbsp; Programme</a>
+<a href="#inscription"><i class="fas fa-user-plus"></i> &nbsp; Inscription</a>
+<a href="#contact"><i class="fas fa-envelope"></i> &nbsp; Contact</a>
+<a href="#feedback"><i class="fas fa-comments"></i> &nbsp; Critiques</a>
+</div>
+</div>
+<!-- Logo Central -->
+<div class="logo">
+<img src="assets/images/logo.png" alt="SAFOI Logo" class="logo-img">
+
+</div>
+<!-- Contact Icons -->
+<div class="contact-icons">
+<div class="contact-icon email" onclick="window.location.href='mailto:safoi.ed2025@gmail.com'" title="Email">
+<i class="fas fa-envelope"></i>
+</div>
+<div class="contact-icon phone" onclick="window.location.href='tel:+22507591786'" title="Téléphone">
+<i class="fas fa-phone"></i>
+</div>
+<div class="contact-icon whatsapp" onclick="window.open('https://chat.whatsapp.com/Ei5Sky2Kct7H0vDvGJXJD5?mode=ac_t')" title="WhatsApp">
+<i class="fab fa-whatsapp"></i>
+</div>
+</div>
+</nav>
+</header>
+<!-- Hero Section -->
+<section id="accueil" class="hero">
+<div class="container">
+<div class="hero-content">
+<h1>SAFOI 2025</h1>
+<div class="hero-subtitle">Salon Africain des Orateurs d'Impact</div>
+<p>Jeunesse, Leadership et Impact : l'Art Oratoire comme moteur de transformation pour l'émergence d'une nouvelle génération de leaders africains audacieux et éloquents</p>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSc1pn1m2UMijlMMfG145Prp0_csZKCDfy1Z3P7vQTabNxkaew/viewform?usp=preview" class="cta-button">
+<i class="fas fa-rocket"></i> &nbsp; S'INSCRIRE À L'ÉVÉNEMENT
+</a>
+<div class="hero-stats">
+<div class="stat-item">
+<span class="stat-number">1000+</span>
+<span class="stat-label">Participants attendus</span>
+</div>
+<div class="stat-item">
+<span class="stat-number">23</span>
+<span class="stat-label">Août 2025</span>
+</div>
+<div class="stat-item">
+<span class="stat-number">8H</span>
+<span class="stat-label">Université Felix Houphouët-Boigny</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Presentation -->
+<section id="presentation" class="section">
+<div class="container">
+<div class="section-content">
+<h2>Présentation</h2>
+<p>Le SAFOI (SALON AFRICAIN DES ORATEURS D'IMPACT) est un événement international unique, conçu pour valoriser les meilleurs orateurs du continent africain et les connecter à ceux qu'ils inspirent, au sein d'un vaste réseau d'échange, de mentorat et d'opportunités.</p>
+<p>Notre vision est de faire du SAFOI la plus grande plateforme africaine de valorisation du talent oratoire, en rassemblant des leaders, experts et jeunes en quête de modèles inspirants.</p>
+</div>
+</div>
+</section>
+<!-- Context -->
+<section class="section alternate">
+<div class="container">
+<div class="section-content">
+<h2>Contexte & Justification</h2>
+<p>Les jeunes Ivoiriens manquent de compétences oratoires, limitant leur accès à l'emploi, aux responsabilités et à l'entrepreneuriat. Ce déficit s'inscrit dans un contexte africain plus large, où 1/3 des jeunes n'ont pas les compétences de base requises par le marché du travail.</p>
+<p>Le SAFOI vient donc répondre à ce vide et résoudre ces problématiques, en créant un espace de formation, d'inspiration et de connexion autour du pouvoir transformateur de la parole.</p>
+</div>
+</div>
+</section>
+<!-- Values -->
+<section class="section">
+<div class="container">
+<h2>Nos Valeurs</h2>
+<div class="values-grid">
+<div class="value-card">
+<h3>EXCELLENCE</h3>
+<p>Instaurer un environnement d'exigence et de qualité, où chaque intervention reflète notre volonté de tirer vers le haut les standards du leadership oratoire.</p>
+</div>
+<div class="value-card">
+<h3>INSPIRATION</h3>
+<p>Faire du SAFOI une source d'élan et de motivation, en mettant en lumière des parcours capables de réveiller l'ambition des jeunes Africains.</p>
+</div>
+<div class="value-card">
+<h3>PARTAGE DE CONNAISSANCES</h3>
+<p>Offrir un espace riche en savoirs et en compétences, pour permettre aux participants de grandir personnellement et professionnellement.</p>
+</div>
+<div class="value-card">
+<h3>RÉSEAUTAGE STRATÉGIQUE</h3>
+<p>Créer des ponts entre générations, disciplines et horizons, en facilitant les rencontres entre jeunes talents et figures influentes d'Afrique.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Programme -->
+<section id="programme" class="section alternate">
+<div class="container">
+<h2>Programme du 23 Août 2025</h2>
+<div class="programme-timeline">
+<div class="timeline-item">
+<div class="timeline-time">08h00 – 09h00</div>
+<div>Accueil et installation</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">09h00 – 09h30</div>
+<div>Discours d'ouverture</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">09h30 – 10h20</div>
+<div><strong>PANEL 1:</strong> L'Art Oratoire comme levier de leadership chez les jeunes africains</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">10h20 – 11h20</div>
+<div><strong>PANEL 2:</strong> Compétences oratoires et insertion professionnelle</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">11h30 – 12h30</div>
+<div><strong>MASTERCLASS</strong></div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">12h30 – 13h30</div>
+<div>Pause déjeuner / Déjeuner VIP</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">14h00 – 15h30</div>
+<div><strong>Concours d'éloquence</strong></div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">15h30 – 15h45</div>
+<div>Délibération, Annonce des résultats</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">16h00</div>
+<div>Clôture et Remerciement – Cocktail de fin - Photos de famille</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Feedback Section -->
+<section id="feedback" class="section feedback-section">
+<div class="container">
+<h2 style="color: white;">Vos Critiques et Suggestions</h2>
+<p style="text-align: center; margin-bottom: 2rem;">Aidez-nous à améliorer le SAFOI en partageant votre expérience</p>
+<div class="feedback-form">
+<form id="feedbackForm">
+<div class="form-group">
+<label for="feedbackName">Votre nom</label>
+<input type="text" id="feedbackName" name="feedbackName">
+</div>
+<div class="form-group">
+<label>Note globale de lévénement</label>
+<div class="rating-group" id="rating">
+<span class="star" data-rating="1">★</span>
+<span class="star" data-rating="2">★</span>
+<span class="star" data-rating="3">★</span>
+<span class="star" data-rating="4">★</span>
+<span class="star" data-rating="5">★</span>
+</div>
+</div>
+<div class="form-group">
+<label for="feedbackText">Vos commentaires et suggestions</label>
+<textarea id="feedbackText" name="feedbackText" rows="5" placeholder="Partagez votre expérience, ce qui vous a plu, et vos suggestions d'amélioration..."></textarea>
+</div>
+<button type="submit" class="submit-btn">ENVOYER VOS CRITIQUES</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Contact -->
+<section id="contact" class="section">
+<div class="container">
+<h2>Contactez-Nous</h2>
+<div class="contact-grid">
+<div class="contact-card">
+<div class="contact-card-icon">
+<i class="fas fa-envelope"></i>
+</div>
+<h3>Email</h3>
+<p>safoi.ed2025@gmail.com</p>
+<a href="mailto:safoi.ed2025@gmail.com" class="contact-btn">Envoyer un Email</a>
+</div>
+<div class="contact-card">
+<div class="contact-card-icon">
+<i class="fas fa-phone"></i>
+</div>
+<h3>Téléphones</h3>
+<p>+225 07 59 178 676</p>
+<p>+225 05 06 88 8312</p>
+<p>+225 07 79 522 800</p>
+<a href="tel:+22507591786" class="contact-btn">Appeler</a>
+</div>
+<div class="contact-card">
+<div class="contact-card-icon">
+<i class="fab fa-whatsapp"></i>
+</div>
+<h3>WhatsApp</h3>
+<p>Rejoignez notre communauté</p>
+<a href="https://chat.whatsapp.com/BqsLSFf8muw8vHkUMvvRzh?mode=ac_t" target="_blank" class="contact-btn">Nous contacter</a>
+</div>
+<div class="contact-card">
+<div class="contact-card-icon">
+<i class="fas fa-map-marker-alt"></i>
+</div>
+<h3>Lieu de l'Événement</h3>
+<p>Amphithéâtre A du District</p>
+<p>Université Félix Houphouët-Boigny</p>
+<p>Cocody, Abidjan</p>
+<a href="#" class="contact-btn">Voir sur la carte</a>
+</div>
+</div>
+<div class="social-section">
+<h3>Suivez-nous sur les réseaux sociaux</h3>
+<div class="social-links-enhanced">
+<a href="https://www.facebook.com/share/1CZgZVRNQA/" target="_blank" class="social-link facebook">
+<i class="fab fa-facebook-f"></i>
+<span>Facebook</span>
+</a>
+<a href="https://www.tiktok.com/@safoi07?_t=ZM-8yVCOva2voe&_r=1" target="_blank" class="social-link tiktok">
+<i class="fab fa-tiktok"></i>
+<span>TikTok</span>
+</a>
+<a href="https://chat.whatsapp.com/BqsLSFf8muw8vHkUMvvRzh?mode=ac_t" target="_blank" class="social-link whatsapp">
+<i class="fab fa-whatsapp"></i>
+<span>WhatsApp</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>SAFOI 2025</h3>
+<p>Salon Africain des Orateurs d'Impact</p>
+</div>
+<div class="footer-section">
+<h3>Lieu</h3>
+<p>Amphithéâtre A du District<br>Université Félix Houphouët-Boigny<br>Cocody, Abidjan</p>
+</div>
+<div class="footer-section">
+<h3>Date</h3>
+<p>Samedi 23 Août 2025<br>08h00 - 16h00</p>
+</div>
+</div>
+<p>&copy; 2025 SAFOI. Tous droits réservés.</p>
+</div>
+</footer>
+<!-- Back to top button -->
+<button class="back-to-top" onclick="scrollToTop()">
+<i class="fas fa-arrow-up"></i>
+</button>
+<!-- Success Modal -->
+<div id="successModal" class="modal">
+<div class="modal-content">
+<span class="close">&times;</span>
+<h2 style="color: var(--primary-green); margin-bottom: 1rem;">Inscription Réussie ! 🎉</h2>
+<p>Merci pour votre inscription au SAFOI 2025. Un email de confirmation a été envoyé à l'adresse <strong id="userEmail"></strong> avec :</p>
+<ul style="text-align: left; margin: 1rem 0;">
+<li>Le chronogramme détaillé</li>
+<li>Votre QR code d'accès</li>
+<li>Le lien du groupe WhatsApp</li>
+</ul>
+<div id="qrcode" style="margin: 1rem 0;"></div>
+<p id="emailStatus" style="margin-top: 1rem; font-weight: bold;"></p>
+<div id="emailDetails" style="margin-top: 1rem; font-size: 0.9rem; color: #666;"></div>
+</div>
+</div>
+<script>
+// Initialize EmailJS
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialiser EmailJS avec une gestion d'erreur
+    try {
+        emailjs.init("P63lfFLAqG9iPZxOT");
+        console.log("EmailJS initialisé avec succès");
+    } catch (error) {
+        console.error("Erreur lors de l'initialisation d'EmailJS:", error);
+    }
+});
+
+// Scroll animations
+function initScrollAnimations() {
+const animateElements = document.querySelectorAll('.scroll-animate');
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('animate');
+}
+});
+}, {
+threshold: 0.1,
+rootMargin: '0px 0px -50px 0px'
+});
+animateElements.forEach(el => observer.observe(el));
+}
+// Back to top functionality
+function scrollToTop() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+}
+// Show/hide back to top button
+function toggleBackToTop() {
+const backToTopBtn = document.querySelector('.back-to-top');
+if (window.pageYOffset > 300) {
+backToTopBtn.classList.add('show');
+} else {
+backToTopBtn.classList.remove('show');
+}
+}
+// Registration Form Handler
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const submitBtn = document.querySelector('.submit-btn');
+const submitText = document.getElementById('submitText');
+const submitLoader = document.getElementById('submitLoader');
+// Show loading
+submitText.style.display = 'none';
+submitLoader.style.display = 'block';
+submitBtn.disabled = true;
+submitBtn.classList.add('loading');
+// Get form data
+const formData = new FormData(this);
+const participant = {
+nom: formData.get('nom'),
+prenoms: formData.get('prenoms'),
+email: formData.get('email'),
+telephone: formData.get('telephone'),
+age: formData.get('age'),
+profession: formData.get('profession'),
+entreprise: formData.get('entreprise'),
+pays: formData.get('pays'),
+lieu: formData.get('lieu'),
+attentes: formData.get('attentes')
+};
+// Generate unique participant ID
+const participantId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+// Generate QR Code
+const qrData = `SAFOI 2025 - ${participant.prenoms} ${participant.nom} - ID: ${participantId}`;
+// Afficher l'email de l'utilisateur dans le modal
+document.getElementById('userEmail').textContent = participant.email;
+// Afficher le statut d'envoi en cours
+document.getElementById('emailStatus').textContent = "Envoi de l'email de confirmation en cours...";
+document.getElementById('emailStatus').style.color = "var(--primary-orange)";
+document.getElementById('emailDetails').innerHTML = "";
+// Simulate email sending (replace with actual EmailJS implementation)
+setTimeout(() => {
+// Reset form
+this.reset();
+// Hide loading
+submitText.style.display = 'block';
+submitLoader.style.display = 'none';
+submitBtn.disabled = false;
+submitBtn.classList.remove('loading');
+// Generate QR Code
+document.getElementById('qrcode').innerHTML = '';
+QRCode.toCanvas(document.getElementById('qrcode'), qrData, function (error) {
+if (error) console.error(error);
+});
+// Show success modal
+document.getElementById('successModal').style.display = 'block';
+// Send confirmation email (implement with EmailJS)
+sendConfirmationEmail(participant, participantId)
+.then(() => {
+document.getElementById('emailStatus').textContent = "✅ Email de confirmation envoyé avec succès !";
+document.getElementById('emailStatus').style.color = "var(--primary-green)";
+document.getElementById('emailDetails').innerHTML = "Veuillez vérifier votre boîte de réception, y compris le dossier spam.";
+})
+.catch((error) => {
+document.getElementById('emailStatus').textContent = "❌ Une erreur est survenue lors de l'envoi de l'email.";
+document.getElementById('emailStatus').style.color = "var(--primary-red)";
+document.getElementById('emailDetails').innerHTML = "Erreur: " + error.message + "<br>Veuillez vérifier votre adresse email ou contactez-nous directement.";
+console.error("Erreur d'envoi d'email:", error);
+});
+}, 2000);
+});
+// Feedback Form Handler
+document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const formData = new FormData(this);
+const rating = document.querySelector('.star.active') ?
+document.querySelector('.star.active').dataset.rating : '0';
+const feedback = {
+name: formData.get('feedbackName'),
+rating: rating,
+comments: formData.get('feedbackText'),
+date: new Date().toISOString()
+};
+// Store feedback locally or send to a service
+let feedbacks = JSON.parse(localStorage.getItem('safoi_feedbacks') || '[]');
+feedbacks.push(feedback);
+localStorage.setItem('safoi_feedbacks', JSON.stringify(feedbacks));
+// Reset form
+this.reset();
+document.querySelectorAll('.star').forEach(star => star.classList.remove('active'));
+alert('Merci pour vos commentaires ! Ils nous aideront à améliorer le SAFOI.');
+});
+// Star Rating System
+document.querySelectorAll('.star').forEach(star => {
+star.addEventListener('click', function() {
+const rating = this.dataset.rating;
+document.querySelectorAll('.star').forEach((s, index) => {
+if (index < rating) {
+s.classList.add('active');
+} else {
+s.classList.remove('active');
+}
+});
+});
+star.addEventListener('mouseover', function() {
+const rating = this.dataset.rating;
+document.querySelectorAll('.star').forEach((s, index) => {
+if (index < rating) {
+s.style.color = 'var(--primary-orange)';
+} else {
+s.style.color = '#ddd';
+}
+});
+});
+});
+// Modal close functionality
+document.querySelector('.close').addEventListener('click', function() {
+document.getElementById('successModal').style.display = 'none';
+});
+window.addEventListener('click', function(event) {
+const modal = document.getElementById('successModal');
+if (event.target === modal) {
+modal.style.display = 'none';
+}
+});
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+target.scrollIntoView({
+behavior: 'smooth',
+block: 'start'
+});
+}
+});
+});
+// Initialize everything when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+// Add scroll animations to sections
+document.querySelectorAll('.section').forEach(section => {
+section.classList.add('scroll-animate');
+});
+document.querySelectorAll('.value-card, .timeline-item, .contact-card').forEach(card => {
+card.classList.add('scroll-animate');
+});
+// Initialize scroll animations
+initScrollAnimations();
+// Back to top button listener
+window.addEventListener('scroll', toggleBackToTop);
+// Add loading animation to CTA button
+document.querySelector('.cta-button').addEventListener('click', function() {
+this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> &nbsp; Redirection...';
+setTimeout(() => {
+this.innerHTML = '<i class="fas fa-rocket"></i> &nbsp; S\'INSCRIRE À L\'ÉVÉNEMENT';
+}, 1000);
+});
+// Add hover effects to contact icons
+document.querySelectorAll('.contact-icon').forEach(icon => {
+icon.addEventListener('mouseenter', function() {
+this.style.transform = 'translateY(-3px) scale(1.1) rotateZ(5deg)';
+});
+icon.addEventListener('mouseleave', function() {
+this.style.transform = 'translateY(0) scale(1) rotateZ(0deg)';
+});
+});
+console.log('🎉 Site SAFOI 2025 chargé avec succès !');
+});
+</script>
+</body>
+</html>

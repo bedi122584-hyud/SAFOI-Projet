@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation SAFOI 2025</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #4CAF50, #FF9800);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .welcome {
+            background: linear-gradient(135deg, #e8f5e8, #fff3e0);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4CAF50;
+        }
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+        .info-card h3 {
+            color: #4CAF50;
+            margin: 0 0 15px;
+            font-size: 1.3rem;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px 0;
+        }
+        .info-item strong {
+            min-width: 120px;
+            color: #333;
+        }
+        .programme {
+            background: white;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .programme h3 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .programme-item {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .programme-item:last-child {
+            border-bottom: none;
+        }
+        .programme-time {
+            font-weight: bold;
+            color: #FF9800;
+            min-width: 120px;
+        }
+        .cta-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .whatsapp-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s;
+        }
+        .qr-section {
+            text-align: center;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .footer {
+            background: #333;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .footer h3 {
+            color: #FF9800;
+            margin-bottom: 15px;
+        }
+        .contact-info {
+            margin: 10px 0;
+        }
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            color: #FF9800;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.1rem;
+        }
+        @media (max-width: 600px) {
+            .email-container {
+                margin: 0;
+                border-radius: 0;
+            }
+            .header, .content, .footer {
+                padding: 20px 15px;
+            }
+            .info-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .programme-item {
+                flex-direction: column;
+            }
+            .programme-time {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎉 SAFOI 2025</h1>
+            <p>Salon Africain des Orateurs d'Impact</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Welcome Section -->
+            <div class="welcome">
+                <h2>Bonjour <strong>{{to_name}}</strong>,</h2>
+                <p>Félicitations ! Votre inscription au <strong>SAFOI 2025</strong> a été confirmée avec succès. Nous sommes ravis de vous compter parmi nos participants !</p>
+            </div>
+
+            <!-- Event Information -->
+            <div class="info-card">
+                <h3>📅 Informations de l'Événement</h3>
+                <div class="info-item">
+                    <strong>📅 Date :</strong>
+                    <span>{{event_date}}</span>
+                </div>
+                <div class="info-item">
+                    <strong>🕐 Horaires :</strong>
+                    <span>08h00 - 16h00</span>
+                </div>
+                <div class="info-item">
+                    <strong>📍 Lieu :</strong>
+                    <span>{{event_location}}</span>
+                </div>
+                <div class="info-item">
+                    <strong>🆔 Votre ID :</strong>
+                    <span><strong>{{participant_id}}</strong></span>
+                </div>
+            </div>
+
+            <!-- Programme -->
+            <div class="programme">
+                <h3>🎯 Programme Détaillé</h3>
+                <div class="programme-item">
+                    <div class="programme-time">08h00 - 09h00</div>
+                    <div>Accueil et installation</div>
+                </div>
+                <div class="programme-item">
+                    <div class="programme-time">09h00 - 09h30</div>
+                    <div>Discours d'ouverture</div>
+                </div>
+                <div class="programme-item">
+                    <div class="programme-time">09h30 - 10h20</div>
+                    <div><strong>PANEL 1:</strong> L'Art Oratoire comme levier de leadership chez les jeunes africains</div>
+                </div>
+                <div class="programme-item">
+                    <div class="programme-time">10h20 - 11h20</div>
+                    <div><strong>PANEL 2:</strong> Compétences oratoires et insertion professionnelle</div>
+                </div>
+                <div class="programme-item">
+                    <div class="programme-time">11h30 - 12h30</div>
+                    <div><strong>MASTERCLASS</strong> avec nos experts</div>
+                </div>
+                <div class="programme-item">
+                    <div class="programme-time">12h30 - 13h30</div>
+                    <div>Pause déjeuner / Déjeuner VIP</div>
+                </div>
+                <div class="programme-item">
+                    <div class="programme-time">14h00 - 15h30</div>
+                    <div><strong>CONCOURS D'ÉLOQUENCE</strong> - Moment fort !</div>
+                </div>
+                <div class="programme-item">
+                    <div class="programme-time">15h30 - 15h45</div>
+                    <div>Délibération et annonce des résultats</div>
+                </div>
+                <div class="programme-item">
+                    <div class="programme-time">16h00</div>
+                    <div>Clôture, remerciements et cocktail de fin</div>
+                </div>
+            </div>
+
+            <!-- WhatsApp CTA -->
+            <div class="cta-vfgtrsection">
+                <h3>Rejoignez Notre Communauté</h3>
+                <p>Connectez-vous avec les autres participants et restez informé :</p>
+                <a href="{{whatsapp_link}}" class="whatsapp-btn">
+                    📱 Rejoindre le Groupe WhatsApp
+                </a>
+            </div>
+
+            <!-- QR Code Section -->
+            <div class="qr-section">
+                <h3>🎫 Votre Accès à l'Événement</h3>
+                <p>Votre QR code d'accès sera généré lors de votre inscription sur le site. Conservez-le précieusement !</p>
+                <p><strong>ID Participant :</strong> {{participant_id}}</p>
+            </div>
+
+            <!-- Important Notes -->
+            <div class="info-card">
+                <h3>📋 Informations Importantes</h3>
+                <ul>
+                    <li>Arrivez 30 minutes avant le début pour l'accueil</li>
+                    <li>Apportez une pièce d'identité</li>
+                    <li>L'entrée est gratuite pour tous les participants</li>
+                    <li>Un certificat de participation sera remis</li>
+                    <li>Photos et vidéos durant l'événement</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>🌍 SAFOI - Salon Africain des Orateurs d'Impact</h3>
+            <div class="contact-info">
+                <p><strong>Email :</strong> safoi.ed2025@gmail.com</p>
+                <p><strong>Téléphones :</strong></p>
+                <p>+225 07 59 178 676 | +225 05 06 88 8312 | +225 07 79 522 800</p>
+            </div>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">TikTok</a>
+                <a href="#">Instagram</a>
+                <a href="#">WhatsApp</a>
+            </div>
+            <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">
+                © 2025 SAFOI. Tous droits réservés.<br>
+                Cet email a été envoyé car vous vous êtes inscrit(e) à notre événement.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

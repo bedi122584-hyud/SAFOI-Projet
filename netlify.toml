@@ -1,0 +1,50 @@
+[build]
+  publish = "."
+  command = "echo 'Static site - no build needed'"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Redirections pour SPA (si nécessaire)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"], Country = ["US"]}
+
+# Formulaire de contact (Netlify Forms)
+[[forms]]
+  name = "contact"
+
+# Variables d'environnement (à configurer dans Netlify dashboard)
+[context.production.environment]
+  EMAILJS_USER_ID = "your_emailjs_user_id"
+  EMAILJS_SERVICE_ID = "your_service_id"
+  EMAILJS_TEMPLATE_ID = "your_template_id"
+
+[context.branch-deploy.environment]
+  EMAILJS_USER_ID = "test_user_id"

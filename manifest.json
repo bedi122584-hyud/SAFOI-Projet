@@ -1,0 +1,57 @@
+{
+  "name": "SAFOI 2025 - Salon Africain des Orateurs d'Impact",
+  "short_name": "SAFOI 2025",
+  "description": "Événement dédié à l'art oratoire et au leadership des jeunes en Afrique",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#4CAF50",
+  "theme_color": "#4CAF50",
+  "orientation": "portrait",
+  "lang": "fr",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "assets/icons/safoi-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/safoi-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshots/desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "assets/screenshots/mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "categories": ["education", "social", "productivity"],
+  "shortcuts": [
+    {
+      "name": "S'inscrire",
+      "short_name": "Inscription",
+      "description": "S'inscrire à l'événement SAFOI 2025",
+      "url": "/#inscription",
+      "icons": [
+        {
+          "src": "assets/icons/register-96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

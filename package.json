@@ -1,0 +1,36 @@
+{
+  "name": "safoi-2025-website",
+  "version": "1.0.0",
+  "description": "Site web officiel du Salon Africain des Orateurs d'Impact 2025",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000",
+    "dev": "npx live-server --port=3000",
+    "build": "echo 'Build completed - Static site ready for deployment'",
+    "deploy": "echo 'Deploy to your chosen platform (Netlify, Vercel, etc.)'"
+  },
+  "keywords": [
+    "safoi",
+    "orateurs",
+    "afrique",
+    "leadership",
+    "jeunesse",
+    "éloquence",
+    "event",
+    "salon"
+  ],
+  "author": "Équipe SAFOI",
+  "license": "ISC",
+  "homepage": "https://safoi2025.netlify.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/votre-username/safoi-2025"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
